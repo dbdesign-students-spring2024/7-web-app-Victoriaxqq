@@ -1,5 +1,16 @@
 # Flask-MongoDB Web App
 
-In this assignment you will create a web app that relies upon a MongoDB database.
+## The tile of the app
+Apartment Rental Market
 
-Replace the contents of this file with a description of your own web app, as described in [the instructions](./instructions.md).
+## Description of my app
+People who want rent their aparment can post the information of their aparment on the app. Others who are looking for apartment can look through the information.
+For the specific information of an apartment, user should include the building name, the type of the apartment, and the price of it. 
+
+## Link 
+Here is the [link](https://github.com/dbdesign-students-spring2024/7-web-app-Victoriaxqq/blob/d2eaa739378dc18dde3eecaf12e93783e2d8f727/app.py).
+
+## My information
+Full name: Victoria Xie
+NYU Net ID: qx623
+With no collaborators 
