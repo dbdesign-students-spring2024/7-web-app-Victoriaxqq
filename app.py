@@ -21,7 +21,7 @@ from bson.objectid import ObjectId
 
 # load credentials and configuration options from .env file
 # if you do not yet have a file named .env, make one based on the template in env.example
-load_dotenv(override=True)  # take environment variables from .env.
+#load_dotenv(override=True)  # take environment variables from .env.
 
 # initialize Sentry for help debugging... this requires an account on sentrio.io
 # you will need to set the SENTRY_DSN environment variable to the value provided by Sentry
@@ -46,10 +46,11 @@ app = Flask(__name__)
 # app.debug = True if os.getenv("FLASK_ENV", "development") == "development" else False
 
 # try to connect to the database, and quit if it doesn't work
+# try to connect to the database, and quit if it doesn't work
 try:
     cxn=pymongo.MongoClient('class-mongodb.cims.nyu.edu', 27017, 
                                 username='qx623',
-                                password='PhOCez~2uq',
+                                password='ifGRpFzS',
                                 authSource='qx623')
     #cxn = pymongo.MongoClient(os.getenv("MONGO_URI"))
     db = cxn['qx623']  # store a reference to the selected database
@@ -63,7 +64,6 @@ except ConnectionFailure as e:
     print(" * MongoDB connection error:", e)  # debug
      #sentry_sdk.capture_exception(e)  # send the error to sentry.io. delete if not using
     sys.exit(1)  # this is a catastrophic error, so no reason to continue to live
-
 # set up the routes
 
 
@@ -174,7 +174,6 @@ def delete(mongoid):
     return redirect(
         url_for("read")
     )  # tell the web browser to make a request for the /read route.
-
 
 
 
