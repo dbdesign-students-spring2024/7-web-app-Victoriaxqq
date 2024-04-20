@@ -17,7 +17,7 @@ from flask import Flask, render_template, request, redirect, url_for, make_respo
 import pymongo
 from pymongo.errors import ConnectionFailure
 from bson.objectid import ObjectId
-from dotenv import load_dotenv
+#from dotenv import load_dotenv
 
 # load credentials and configuration options from .env file
 # if you do not yet have a file named .env, make one based on the template in env.example
@@ -47,19 +47,22 @@ app = Flask(__name__)
 
 # try to connect to the database, and quit if it doesn't work
 try:
-    cxn = pymongo.MongoClient(os.getenv("MONGO_URI"))
-    db = cxn[os.getenv("MONGO_DBNAME")]  # store a reference to the selected database
+    cxn=pymongo.MongoClient('class-mongodb.cims.nyu.edu', 27017, 
+                                username='qx623',
+                                password='PhOCez~2uq',
+                                authSource='qx623')
+    #cxn = pymongo.MongoClient(os.getenv("MONGO_URI"))
+    db = cxn['qx623']  # store a reference to the selected database
 
     # verify the connection works by pinging the database
-    cxn.admin.command("ping")  # The ping command is cheap and does not require auth.
+    #cxn.admin.command("ping")  # The ping command is cheap and does not require auth.
     print(" * Connected to MongoDB!")  # if we get here, the connection worked!
 except ConnectionFailure as e:
     # catch any database errors
     # the ping command failed, so the connection is not available.
     print(" * MongoDB connection error:", e)  # debug
-    sentry_sdk.capture_exception(e)  # send the error to sentry.io. delete if not using
+     #sentry_sdk.capture_exception(e)  # send the error to sentry.io. delete if not using
     sys.exit(1)  # this is a catastrophic error, so no reason to continue to live
-
 
 # set up the routes
 
@@ -206,4 +209,4 @@ def handle_error(e):
 # run the app
 if __name__ == "__main__":
     # logging.basicConfig(filename="./flask_error.log", level=logging.DEBUG)
-    app.run(load_dotenv=True)
+    app.run()
