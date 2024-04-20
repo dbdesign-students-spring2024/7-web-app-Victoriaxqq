@@ -8,10 +8,10 @@ import datetime
 from flask import Flask, render_template, request, redirect, url_for, make_response
 
 # import logging
-import sentry_sdk
-from sentry_sdk.integrations.flask import (
-    FlaskIntegration,
-)  # delete this if not using sentry.io
+#import sentry_sdk
+#from sentry_sdk.integrations.flask import (
+   #FlaskIntegration,
+#)  # delete this if not using sentry.io
 
 # from markupsafe import escape
 import pymongo
@@ -26,18 +26,18 @@ load_dotenv(override=True)  # take environment variables from .env.
 # initialize Sentry for help debugging... this requires an account on sentrio.io
 # you will need to set the SENTRY_DSN environment variable to the value provided by Sentry
 # delete this if not using sentry.io
-sentry_sdk.init(
-    dsn=os.getenv("SENTRY_DSN"),
+#sentry_sdk.init(
+    #dsn=os.getenv("SENTRY_DSN"),
     # enable_tracing=True,
     # Set traces_sample_rate to 1.0 to capture 100% of transactions for performance monitoring.
-    traces_sample_rate=1.0,
+    #traces_sample_rate=1.0,
     # Set profiles_sample_rate to 1.0 to profile 100% of sampled transactions.
     # We recommend adjusting this value in production.
-    profiles_sample_rate=1.0,
-    integrations=[FlaskIntegration()],
-    traces_sample_rate=1.0,
-    send_default_pii=True,
-)
+    #profiles_sample_rate=1.0,
+    #integrations=[FlaskIntegration()],
+    #traces_sample_rate=1.0,
+    #send_default_pii=True,
+#)
 
 # instantiate the app using sentry for debugging
 app = Flask(__name__)
@@ -101,10 +101,11 @@ def create_post():
     Accepts the form submission data for a new document and saves the document to the database.
     """
     name = request.form["fname"]
-    message = request.form["fmessage"]
+    type = request.form["ftype"]
+    price = request.form["fprice"]
 
     # create a new document with the data the user entered
-    doc = {"name": name, "message": message, "created_at": datetime.datetime.utcnow()}
+    doc = {"Name": name, "Type":type, "Price": price, "created_at": datetime.datetime.utcnow()}
     db.exampleapp.insert_one(doc)  # insert a new document
 
     return redirect(
@@ -137,12 +138,14 @@ def edit_post(mongoid):
     mongoid (str): The MongoDB ObjectId of the record to be edited.
     """
     name = request.form["fname"]
-    message = request.form["fmessage"]
+    type = request.form["ftype"]
+    price = request.form["fprice"]
 
     doc = {
         # "_id": ObjectId(mongoid),
-        "name": name,
-        "message": message,
+        "Name": name,
+        "Type": type,
+        "Price": price,
         "created_at": datetime.datetime.utcnow(),
     }
 

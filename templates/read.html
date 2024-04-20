@@ -1,14 +1,18 @@
 {% extends 'base.html' %}
 
 {% block container %}
-<h2>Read</h2>
-<p>This page shows information pulled from a MongoDB database collection.
+<h2>Here is the information of rental apartments</h2>
+<p>This page shows information post in the rental market.
         
     {% for doc in docs %}
     <div>
         <hr class="solid">
+            The building name is {{doc.Name}}.
+            The apartment type is {{doc.Type}}.
+            The price is {{doc["Price"]}}.
         <p class="post">
-            Posted by {{doc.name}} at {{ doc.created_at.strftime("%H:%M on %d %B %Y") }}
+            
+            Posted at {{ doc.created_at.strftime("%H:%M on %d %B %Y") }}
             <br/>
             <a href="{{ url_for('edit',mongoid=doc._id)}}">Edit</a> | <a href="{{ url_for('delete',mongoid=doc._id)}}">Delete</a>
             <br/>
