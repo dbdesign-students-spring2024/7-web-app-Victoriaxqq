@@ -8,7 +8,7 @@ People who want rent their aparment can post the information of their aparment o
 For the specific information of an apartment, user should include the building name, the type of the apartment, and the price of it. 
 
 ## Link 
-Here is the [link](https://github.com/dbdesign-students-spring2024/7-web-app-Victoriaxqq/blob/d2eaa739378dc18dde3eecaf12e93783e2d8f727/app.py).
+Here is the [link](https://i6.cims.nyu.edu/~qx623/7-web-app-Victoriaxqq/flask.cgi).
 
 ## My information
 Full name: Victoria Xie
